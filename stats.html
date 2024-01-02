@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stats</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="carinfo.js"></script>
+    <link rel="icon" type="image/x-icon" href="img/5.svg">
+    <style>
+        table {
+            width: 100%;
+            height: 100vh;
+        }
+        td {
+            border: 1px solid black;
+            padding: 0%;
+            background-color: #454545;
+            background-size: cover;
+            background-repeat: no-repeat;
+            text-align: center;
+        }
+        .carClass {
+            width: 4% !important;
+        }
+        #stats {
+            color: white;
+            font-weight: 900;
+        }
+    </style>
+
+    <script>
+        function getElement(element) {
+            return document.getElementById(element);
+        }
+        function refreshStats() {
+            let stats = document.getElementById('stats');
+            stats.innerHTML = `<tr>
+                <td>Position</td>
+                <td>Car</td>
+                <td>Team</td>
+                <td>Laps</td>
+                <td>Laps Led</td>
+                <td>Pit Rounds</td>
+                <td>Start Position</td>
+                <td>+/-</td>
+                <td>+/- 10 Rounds</td>
+            </tr>`;
+
+            let order;
+            if (document.getElementById('menuSelect').value == '0') {
+                order = localStorage.leaderBoard.split(',');
+            } else if (document.getElementById('menuSelect').value == '1') {
+                order = JSON.parse(localStorage.lapsLedLB);
+            } else if (document.getElementById('menuSelect').value == '2') {
+                order = JSON.parse(localStorage.pitRoundsLB);
+            } else if (document.getElementById('menuSelect').value == '3') {
+                order = JSON.parse(localStorage.plusMinusLB);
+            } else if (document.getElementById('menuSelect').value == '4') {
+                order = JSON.parse(localStorage.plusMinusLB10Rounds);
+            }
+
+            let i = 0;
+            order.forEach(function(car) {
+                i++;
+                let tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${JSON.parse(localStorage.currentPosition)[car]}</td>
+                    <td class='${car} carClass'></td>
+                    <td>${JSON.parse(localStorage.teams)[car]}</td>
+                    <td>${JSON.parse(localStorage.laps)[car]}</td>
+                    <td>${JSON.parse(localStorage.lapsLed)[car]}</td>
+                    <td>${JSON.parse(localStorage.totalRoundsInPit)[car]}</td>
+                    <td>${JSON.parse(localStorage.startPosition)[car]}</td>
+                    <td>${JSON.parse(localStorage.startPosition)[car] - JSON.parse(localStorage.currentPosition)[car]}</td>
+                    <td>${JSON.parse(localStorage.posAfter10)[car] - JSON.parse(localStorage.currentPosition)[car]}</td>
+                `;
+
+                stats.appendChild(tr);
+            });
+
+            let teamLB = JSON.parse(localStorage.teamLeaderboard);
+            let startTeamLB = JSON.parse(localStorage.startTeamLB);
+            let teamABC = ["Team 1", "Team 2", "Team 4", "Team 5", "Team 3"];
+
+            let o = 0;
+            document.getElementById('teamLBTable').innerHTML = `<tr><td>Team</td><td>Points</td><td>+/-</td></tr>`;
+            for (let i = 0; i < 5; i++) {
+                let highestIdx = 0;
+                for (o = 0; o < 5; o++) {
+                    if (teamLB[teamABC[o]] > teamLB[teamABC[highestIdx]]) {
+                        highestIdx = o;
+                    }
+                }
+                document.getElementById('teamLBTable').innerHTML += `<tr><td>${teamABC[highestIdx]}</td><td>${teamLB[teamABC[highestIdx]]}</td><td>${teamLB[teamABC[highestIdx]] - startTeamLB[teamABC[highestIdx]]}</td></tr>`;
+                removeFromArray(teamABC, teamABC[highestIdx]);
+            }
+        }
+        setInterval(refreshStats, 1000);
+
+        //Hide/Show Menu
+        let key = "Digit1";
+        let key2 = "Digit2";
+
+        var menuHidden = false;
+        var menuHidden2 = false;
+
+        document.addEventListener('keydown', function(event) {
+            function hideMenu(a) {
+                if (a == "1") {
+                    document.getElementById('menu5').style.display = "none";
+                    menuHidden = true;
+                } else if (a == "2") {
+                    document.getElementById('menu6').style.display = "none";
+                    menuHidden2 = true;
+                }
+            }
+            function showMenu(a) {
+                if (a == "1") {
+                    document.getElementById('menu5').style.display = "initial";
+                    menuHidden = false;
+                } else if (a == "2") {
+                    document.getElementById('menu6').style.display = "initial";
+                    menuHidden2 = false;
+                }
+            }
+            if (event.code == key) {
+                if (menuHidden) {
+                    showMenu('1');
+                } else {
+                    hideMenu('1');
+                }
+            } else if (event.code == key2) {
+                if (menuHidden2) {
+                    showMenu('2');
+                } else {
+                    hideMenu('2');
+                }
+            }
+        });
+
+        function removeFromArray(array, item) {
+            for (let i = 0; i < array.length; i++){ 
+                if ( array[i] == item) { 
+                    array.splice(i, 1); 
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <table id="stats">
+    </table>
+    <div id="menu5" class="menu">
+        <div id='menu5header'><h1>Leaderboard Menu</h1></div>
+        <table class="fixedHeight">
+            <tr>
+                <td>
+                    Order By
+                </td>
+                <td>
+                    <select id='menuSelect' class="menuButton">
+                        <option value="0">Position</option>
+                        <option value="1">Laps Led</option>
+                        <option value="2">Pit Rounds</option>
+                        <option value="3">+/-</option>
+                        <option value="4">+/- 10 Rounds</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="menu6" class="menu">
+        <div id='menu6header'><h1>Team Leaderboard</h1></div>
+        <table id="teamLBTable" class="fixedHeight">
+            <tr>
+                <td>
+                    Team
+                </td>
+                <td>
+                    Points
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

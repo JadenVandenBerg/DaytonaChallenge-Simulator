@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daytona Challenge</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="daytona.js"></script>
+    <script src="carinfo.js"></script>
+    <link rel="icon" type="image/x-icon" href="img/2.svg">
+
+    <script>
+        /* Drag Element */
+
+        function setDrag(dragItem) {
+            setTimeout(function() {
+                var container = document.querySelector("body");
+
+                var active = false;
+                var currentX;
+                var currentY;
+                var initialX;
+                var initialY;
+                var xOffset = 0;
+                var yOffset = 0;
+
+                container.addEventListener("touchstart", dragStart, false);
+                container.addEventListener("touchend", dragEnd, false);
+                container.addEventListener("touchmove", drag, false);
+
+                container.addEventListener("mousedown", dragStart, false);
+                container.addEventListener("mouseup", dragEnd, false);
+                container.addEventListener("mousemove", drag, false);
+
+                function dragStart(e) {
+                    if (e.type === "touchstart") {
+                        initialX = e.touches[0].clientX - xOffset;
+                        initialY = e.touches[0].clientY - yOffset;
+                    } else {
+                        initialX = e.clientX - xOffset;
+                        initialY = e.clientY - yOffset;
+                    }
+
+                    if (e.target === dragItem) {
+                        active = true;
+                    }
+                }
+
+                function dragEnd(e) {
+                    initialX = currentX;
+                    initialY = currentY;
+
+                    active = false;
+                }
+
+                function drag(e) {
+                    if (active) {
+                    
+                        e.preventDefault();
+                        
+                        if (e.type === "touchmove") {
+                            currentX = e.touches[0].clientX - initialX;
+                            currentY = e.touches[0].clientY - initialY;
+                        } else {
+                            currentX = e.clientX - initialX;
+                            currentY = e.clientY - initialY;
+                        }
+
+                        xOffset = currentX;
+                        yOffset = currentY;
+
+                        setTranslate(currentX, currentY, dragItem);
+                    }
+                }
+
+                function setTranslate(xPos, yPos, el) {
+                    el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+                }
+            }, 2000);
+        }
+
+        setTimeout(function() {
+            setDrag(document.querySelector("#menu"));
+            setDrag(document.querySelector("#menu2"));
+            setDrag(document.querySelector("#menu3"));
+            setDrag(document.querySelector("#menu4"));
+        }, 2000);
+
+        /* End Drag */
+    </script>
+</head>
+<body id="body">
+    <div id="load">
+        <div class="loadStuff">
+            <h1>Daytona Challenge</h1>
+            <center><button id="playButton">Play</button></center>
+        </div>
+    </div>
+    <table id="track">
+        <tr>
+            <td id="c19"></td>
+            <td id="c18"></td>
+            <td id="c17"></td>
+            <td id="c16"></td>
+            <td id="c15"></td>
+            <td id="c14"></td>
+            <td id="c13"></td>
+            <td id="c12"></td>
+            <td id="c11"></td>
+            <td id="c10"></td>
+            <td id="c9"></td>
+            <td id="c8"></td>
+            <td id="c7"></td>
+            <td id="c6"></td>
+            <td id="c5"></td>
+            <td id="c4"></td>
+            <td id="c3"></td>
+            <td id="c2"></td>
+            <td id="c1"></td>
+        </tr>
+        <tr>
+            <td id="b19"></td>
+            <td id="b18"></td>
+            <td id="b17"></td>
+            <td id="b16"></td>
+            <td id="b15"></td>
+            <td id="b14"></td>
+            <td id="b13"></td>
+            <td id="b12"></td>
+            <td id="b11"></td>
+            <td id="b10"></td>
+            <td id="b9"></td>
+            <td id="b8"></td>
+            <td id="b7"></td>
+            <td id="b6"></td>
+            <td id="b5"></td>
+            <td id="b4"></td>
+            <td id="b3"></td>
+            <td id="b2"></td>
+            <td id="b1"></td>
+        </tr>
+        <tr>
+            <td id="a19"></td>
+            <td id="a18"></td>
+            <td id="a17"></td>
+            <td id="a16"></td>
+            <td id="a15"></td>
+            <td id="a14"></td>
+            <td id="a13"></td>
+            <td id="a12"></td>
+            <td id="a11"></td>
+            <td id="a10"></td>
+            <td id="a9"></td>
+            <td id="a8"></td>
+            <td id="a7"></td>
+            <td id="a6"></td>
+            <td id="a5"></td>
+            <td id="a4"></td>
+            <td id="a3"></td>
+            <td id="a2"></td>
+            <td id="a1"></td>
+        </tr>
+        <tr>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+        </tr>
+        <tr>
+            <td id="pitt19"></td>
+            <td id="pitt18"></td>
+            <td id="pitt17"></td>
+            <td id="pitt16"></td>
+            <td id="pitt15"></td>
+            <td id="pitt14"></td>
+            <td id="pitt13"></td>
+            <td id="pitt12"></td>
+            <td id="pitt11"></td>
+            <td id="pitt10"></td>
+            <td id="pitt9"></td>
+            <td id="pitt8"></td>
+            <td id="pitt7"></td>
+            <td id="pitt6"></td>
+            <td id="pitt5"></td>
+            <td id="pitt4"></td>
+            <td id="pitt3"></td>
+            <td id="pitt2"></td>
+            <td id="pitt1"></td>
+        </tr>
+        <tr>
+            <td id="pit19"></td>
+            <td id="pit18"></td>
+            <td id="pit17"></td>
+            <td id="pit16"></td>
+            <td id="pit15"></td>
+            <td id="pit14"></td>
+            <td id="pit13"></td>
+            <td id="pit12"></td>
+            <td id="pit11"></td>
+            <td id="pit10"></td>
+            <td id="pit9"></td>
+            <td id="pit8"></td>
+            <td id="pit7"></td>
+            <td id="pit6"></td>
+            <td id="pit5"></td>
+            <td id="pit4"></td>
+            <td id="pit3"></td>
+            <td id="pit2"></td>
+            <td id="pit1"></td>
+        </tr>
+        <tr>
+            <td id="pitstall19" class=""></td>
+            <td id="pitstall18" class=""></td>
+            <td id="pitstall17" class=""></td>
+            <td id="pitstall16" class=""></td>
+            <td id="pitstall15" class=""></td>
+            <td id="pitstall14" class=""></td>
+            <td id="pitstall13" class=""></td>
+            <td id="pitstall12" class=""></td>
+            <td id="pitstall11" class=""></td>
+            <td id="pitstall10" class=""></td>
+            <td id="pitstall9" class=""></td>
+            <td id="pitstall8" class=""></td>
+            <td id="pitstall7" class=""></td>
+            <td id="pitstall6" class=""></td>
+            <td id="pitstall5" class=""></td>
+            <td id="pitstall4" class=""></td>
+            <td id="pitstall3" class=""></td>
+            <td id="pitstall2" class=""></td>
+            <td id="pitstall1" class=""></td>
+        </tr>
+        <tr>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+        </tr>
+        <tr>
+            <td id="c38"></td>
+            <td id="c37"></td>
+            <td id="c36"></td>
+            <td id="c35"></td>
+            <td id="c34"></td>
+            <td id="c33"></td>
+            <td id="c32"></td>
+            <td id="c31"></td>
+            <td id="c30"></td>
+            <td id="c29"></td>
+            <td id="c28"></td>
+            <td id="c27"></td>
+            <td id="c26"></td>
+            <td id="c25"></td>
+            <td id="c24"></td>
+            <td id="c23"></td>
+            <td id="c22"></td>
+            <td id="c21"></td>
+            <td id="c20"></td>
+        </tr>
+        <tr>
+            <td id="b38"></td>
+            <td id="b37"></td>
+            <td id="b36"></td>
+            <td id="b35"></td>
+            <td id="b34"></td>
+            <td id="b33"></td>
+            <td id="b32"></td>
+            <td id="b31"></td>
+            <td id="b30"></td>
+            <td id="b29"></td>
+            <td id="b28"></td>
+            <td id="b27"></td>
+            <td id="b26"></td>
+            <td id="b25"></td>
+            <td id="b24"></td>
+            <td id="b23"></td>
+            <td id="b22"></td>
+            <td id="b21"></td>
+            <td id="b20"></td>
+        </tr>
+        <tr>
+            <td id="a38"></td>
+            <td id="a37"></td>
+            <td id="a36"></td>
+            <td id="a35"></td>
+            <td id="a34"></td>
+            <td id="a33"></td>
+            <td id="a32"></td>
+            <td id="a31"></td>
+            <td id="a30"></td>
+            <td id="a29"></td>
+            <td id="a28"></td>
+            <td id="a27"></td>
+            <td id="a26"></td>
+            <td id="a25"></td>
+            <td id="a24"></td>
+            <td id="a23"></td>
+            <td id="a22"></td>
+            <td id="a21"></td>
+            <td id="a20"></td>
+        </tr>
+        <tr>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+        </tr>
+        <tr>
+            <td id="c57"></td>
+            <td id="c56"></td>
+            <td id="c55"></td>
+            <td id="c54"></td>
+            <td id="c53"></td>
+            <td id="c52"></td>
+            <td id="c51"></td>
+            <td id="c50"></td>
+            <td id="c49"></td>
+            <td id="c48"></td>
+            <td id="c47"></td>
+            <td id="c46"></td>
+            <td id="c45"></td>
+            <td id="c44"></td>
+            <td id="c43"></td>
+            <td id="c42"></td>
+            <td id="c41"></td>
+            <td id="c40"></td>
+            <td id="c39"></td>
+        </tr>
+        <tr>
+            <td id="b57"></td>
+            <td id="b56"></td>
+            <td class="" id="b55"></td>
+            <td class="" id="b54"></td>
+            <td class="" id="b53"></td>
+            <td class="" id="b52"></td>
+            <td class="" id="b51"></td>
+            <td class="" id="b50"></td>
+            <td class="" id="b49"></td>
+            <td class="" id="b48"></td>
+            <td class="" id="b47"></td>
+            <td class="" id="b46"></td>
+            <td class="" id="b45"></td>
+            <td class="" id="b44"></td>
+            <td class="" id="b43"></td>
+            <td class="" id="b42"></td>
+            <td class="" id="b41"></td>
+            <td class="" id="b40"></td>
+            <td class="" id="b39"></td>
+        </tr>
+        <tr>
+            <td id="a57"></td>
+            <td class="" id="a56"></td>
+            <td class="" id="a55"></td>
+            <td class="" id="a54"></td>
+            <td class="" id="a53"></td>
+            <td class="" id="a52"></td>
+            <td class="" id="a51"></td>
+            <td class="" id="a50"></td>
+            <td class="" id="a49"></td>
+            <td class="" id="a48"></td>
+            <td class="" id="a47"></td>
+            <td class="" id="a46"></td>
+            <td class="" id="a45"></td>
+            <td class="" id="a44"></td>
+            <td class="" id="a43"></td>
+            <td class="" id="a42"></td>
+            <td class="" id="a41"></td>
+            <td class="" id="a40"></td>
+            <td class="" id="a39"></td>
+        </tr>
+    </table>
+    <div id="menu" class="menu">
+        <div id='menuheader'><h1>Leaderboard</h1></div>
+    </div>
+</body>
+</html>

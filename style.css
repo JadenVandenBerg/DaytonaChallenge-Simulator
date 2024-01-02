@@ -1,0 +1,260 @@
+body {
+    background: #1d3c58;
+}
+#track, #LBTable, #INFOTable, #RACETable, #finalLBTable {
+    border: 1px solid black;
+    width: 100% !important;
+    height: 100% !important;
+    transform: rotateY(180deg);
+}
+#track {
+    background: #454545;
+}
+#track td {
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    border-left: 0px !important;
+    border-right: 0px !important;
+    padding: 1.25%;
+    background-color: #454545;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-background-origin: border;
+}
+td {
+    border: 1px solid black;
+    padding: 1.25%;
+    background-color: #454545;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-background-origin: border;
+}
+#track td, #LBTable td, #INFOTable td, #RACETable td, #finalLBTable td {
+    transform: rotateY(180deg) !important;
+}
+/*tr:nth-child(6) td, tr:nth-child(7) td, tr:nth-child(8) td, tr:nth-child(9) td, tr:nth-child(10) td, tr:nth-child(11) td, tr:nth-child(12) td, tr:nth-child(13) td {
+    padding: 1.25%;
+}*/
+.hidden {
+    background-color: #1d3c58 !important;
+    border: none !important;
+}
+.marginTop {
+    margin-top: 5px !important;
+}
+.five {
+    background-image: url("img/5.svg");
+}
+.fourtytwo {
+    background-image: url("img/42.svg");
+}
+.two {
+    background-image: url("img/2.svg");
+}
+.ten {
+    background-image: url("img/10.svg");
+}
+.eighteen {
+    background-image: url("img/18.svg");
+}
+.twentyone {
+    background-image: url("img/21.svg");
+}
+.twentyfour {
+    background-image: url("img/24.svg");
+}
+.thirtysix {
+    background-image: url("img/36.svg");
+}
+.thirtyeight {
+    background-image: url("img/38.svg");
+}
+.three {
+    background-image: url("img/3.svg");
+}
+
+.nine {
+    background-image: url("img/9.svg");
+}
+.fourteen {
+    background-image: url("img/14.svg");
+}
+.fifteen {
+    background-image: url("img/15.svg");
+}
+.sixteen {
+    background-image: url("img/16.svg");
+}
+.seventeen {
+    background-image: url("img/17.svg");
+}
+.nineteen {
+    background-image: url("img/19.svg");
+}
+.twenty {
+    background-image: url("img/20.svg");
+}
+.twentythree {
+    background-image: url("img/23.svg");
+}
+.twentyfive {
+    background-image: url("img/25.svg");
+}
+.twentyseven {
+    background-image: url("img/27.svg");
+}
+.thirtytwo {
+    background-image: url("img/32.svg");
+}
+.thirtythree {
+    background-image: url("img/33.svg");
+}
+.thirtyfour {
+    background-image: url("img/34.svg");
+}
+.fourtyone {
+    background-image: url("img/41.svg");
+}
+.fourtythree {
+    background-image: url("img/43.svg");
+}
+.fourtysix {
+    background-image: url("img/46.svg");
+}
+.fourtyseven {
+    background-image: url("img/47.svg");
+}
+.fourtyeight {
+    background-image: url("img/48.svg");
+}
+.fiftyfour {
+    background-image: url("img/54.svg");
+}
+.fiftyfive {
+    background-image: url("img/55.svg");
+}
+.sixtytwo {
+    background-image: url("img/62.svg");
+}
+.eightythree {
+    background-image: url("img/83.svg");
+}
+.eightyeight {
+    background-image: url("img/88.svg");
+}
+.ninetyfive {
+    background-image: url("img/95.svg");
+}
+.ninetynine {
+    background-image: url("img/99.svg");
+}
+.menu h3, .menu h1 { color: white !important; } .menu { overflow-y:scroll; float: right; text-align: center; margin: 10px 10px 10px 1px; color: white; } .menu h1 { color: white; } input::placeholder {color:black;} input { border: 1px solid black; margin: 2px;} .menuButton { border-radius: 5px; font-family: Georgia; color: #ffffff; font-size: 15px; background: #828282; padding: 2px 5px 2px 5px; border: solid #000000 1px; text-decoration: none; }
+.menu {
+    border: 1px solid black;
+    background: rgba(34, 34, 34, 0.75);
+    width: 300px;
+    height: 500px;
+    z-index: 2147483647;
+    position: absolute;
+}
+#menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#menu5 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+#menu6 {
+    position: absolute;
+    top: 0;
+    left: 320px;
+    overflow: hidden;
+}
+.fixedHeight {
+    height: 100px;
+}
+#menu2 {
+    position: absolute;
+    top: 0;
+    left: 320px;
+}
+#menu3 {
+    position: absolute;
+    top: 0;
+    left: 640px;
+}
+#menu4 {
+    position: absolute;
+    overflow: hidden !important;
+    top: 0;
+    left: 960px;
+}
+#menu td, #menu2 td, #menu3 td, #menu4 td, #menu5 td, #menu6 td {
+    border-color: #00000066;
+    border-width: 2px;
+    background-color: #1d1d1d73 !important;
+}
+
+#startRaceForm {
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+#startRaceForm input {
+    width: 100%;
+    height: 100%;
+    margin: 0% !important;
+    left: 0%;
+    border: none;
+    background: transparent;
+    color: white;
+}
+#startRaceForm ::placeholder {
+    color: rgb(150, 150, 150);
+}
+#load {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
+    background: url('img/bg.jpg') center center no-repeat;
+    background-size: cover;
+}
+#load h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 60px;
+    font-weight: 900;
+}
+#load button {
+    width: 20%;
+    margin: auto;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    background: black;
+    color: white;
+}
+#load button:hover {
+    background: yellow;
+    color: black;
+}
+.loadStuff {
+    background: #606060b0;
+    border: 5px solid black;
+    padding: 10px;
+    width: 50%;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    border-radius: 10px;
+}
+#teamLBTable td {
+    padding: 5px;
+}
